@@ -35,6 +35,15 @@ CREATE TABLE IF NOT EXISTS usuarios (
     fecha_creacion DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
+CREATE TABLE IF NOT EXISTS libros_usuarios (
+    libro_id INT UNSIGNED NOT NULL,
+    usuario_id INT UNSIGNED NOT NULL,
+
+    FOREIGN KEY (libro_id) REFERENCES libros(libro_id),
+    FOREIGN KEY (usuario_id) REFERENCES usuarios(usuario_id),
+    fecha_creacion DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
 -- ALTER TABLE LIBROS ADD FOREIGN KEY (autor_id) REFERENCES autores(autor_id) ON DELETE CASCADE
 
 ALTER TABLE libros ADD ventas INT UNSIGNED NOT NULL DEFAULT 0;
@@ -120,6 +129,9 @@ VALUES
     ('Codi1', 'Facilito', 'codigofacilito', 'ayuda@codigofacilito.com'),
     ('Codi2', 'Facilito', 'codigofacilito', 'ayuda@codigofacilito.com'),
     ('Codi3', 'Facilito', 'codigofacilito', 'ayuda@codigofacilito.com');
+
+INSERT INTO libros_usuarios (libro_id,usuario_id)
+VALUES (1,1), (2,1), (3,1), (1,2), (2,2), (3,2);
 
 SELECT CONCAT(nombre, " ", apellido) AS nombre_completo, email AS email FROM usuarios 
     UNION  
