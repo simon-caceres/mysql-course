@@ -50,3 +50,9 @@ INNER JOIN libros
 INNER JOIN autores
     ON libros.autor_id = autores.autor_id
         AND autores.pseudonimo IS NOT NULL;
+
+-- CROS JOIN
+
+SELECT usuarios.username, libros.titulo 
+    FROM usuarios 
+CROSS JOIN libros;
